@@ -1,37 +1,17 @@
-name: Deploy Marrakech Bongo Preview
+name: Marrakech Bongo Preview Status
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  status:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload website
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: .
-
-      - name: Deploy website
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Preview publishing status
+        run: |
+          echo "GitHub Pages publishing is intentionally disabled for this repository."
+          echo "The live Marrakech Bongo / ОБРАЗ platform is deployed through the existing Beget/n8n production infrastructure."
+          echo "This workflow is manual-only and does not deploy or modify production."
